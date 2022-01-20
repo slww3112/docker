@@ -8,7 +8,45 @@ if (isset($_POST)){
         $return[$key] = $value;
         $i = $i +1;
     }
-    var_dump($return);
+    $con = mysqli_connect('185.245.96.152', 'test', 'root', 'onlineshop');
+    if ($stmt = $con->prepare('INSERT INTO onlineshop.users_info (first_name,last_name,email,mobile,address1,address2) VALUES (?, ?,?,?,?,?)')) {
+        $stmt->bind_param('ssssss', $return['first_name'], $return['last_name'], $_POST['email'],$return['phone'],$return['country'],$return['city']);
+        $stmt->execute();
+    } else {
+        // Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
+        echo 'Could not prepare statement!';
+    }
+    $email = $return['email'];
+    $result = mysqli_query($con,"select user_id from onlineshop.users_info where email = '$email';");
+    while(list($user_id)=mysqli_fetch_array($result)){
+        $usr_id = $user_id;
+    }
+    if ($stmt = $con->prepare('INSERT INTO onlineshop.bestellung (user,price) VALUES (?, ?)')) {
+        $stmt->bind_param('sd', $usr_id, $return['total']);
+        $stmt->execute();
+    } else {
+        // Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
+        echo 'Could not prepare statement!';
+    }
+    $result = mysqli_query($con,"select ID from onlineshop.bestellung where user = '$usr_id' order by ID desc limit 1;");
+    while(list($bestellung_id)=mysqli_fetch_array($result)){
+        $bes_id = $bestellung_id;
+    }
+    foreach($return as $key => $item) {
+        if ($key != 'first_name' && $key != 'last_name' && $key != 'email' && $key != 'phone' && $key != 'city' && $key != 'country' && $key != 'total') {
+            $result = mysqli_query($con,"select id from onlineshop.item where name = '$key';");
+            while(list($item_id)=mysqli_fetch_array($result)){
+                $itemid = $item_id;
+            }
+            if ($stmt = $con->prepare('INSERT INTO onlineshop.bestellungitem (bes_id,item_id,amount) VALUES (?, ?,?)')) {
+                $stmt->bind_param('iii', $bes_id, $itemid, $item);
+                $stmt->execute();
+            } else {
+                // Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
+                echo 'Could not prepare statement!';
+            }
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
