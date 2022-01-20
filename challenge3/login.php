@@ -11,7 +11,7 @@ $password = mysqli_real_escape_string($con, $_POST['txt_pwd']);
 
 if ($uname2 != "" && $password2 != "") {
 
-    $sql_query = "select count(*) as cntUser from users2 where username='" . $uname2 . "' and password='" . $password2 . "'";
+    $sql_query = "select count(*) as cntUser from users where username='" . $uname2 . "' and password='" . $password2 . "'";
     $result = mysqli_query($con, $sql_query);
     $row = mysqli_fetch_array($result);
 

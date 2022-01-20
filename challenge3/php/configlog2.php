@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 $host = "185.245.96.152"; /* Host name */
 $user = "test"; /* User */
 $password = "root"; /* Password */
