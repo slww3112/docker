@@ -4,12 +4,6 @@ if (isset($_POST) && !isset($_POST['btn_save'])) {
     $total = $_POST['total'];
 }
 if (isset($_POST['btn_save'])) {
-    echo $_POST['first_name'];
-    echo $_POST['last_name'];
-    echo $_POST['email'];
-    echo $_POST['phone'];
-    echo $_POST['city'];
-    echo $_POST['country'];
     header("Location:/paypal.php");
 }
 ?>

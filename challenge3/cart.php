@@ -125,11 +125,12 @@
         var value = localStorage.getItem('discount').split('.')[1];
         if (type == '0') {
             document.getElementById('subtotal').innerText = `Subtotal: ${subtotal() * ((100 - parseInt(value))/100)} €`;
+            document.getElementById('total').value = subtotal() * ((100 - parseInt(value))/100);
         }
         else {
             document.getElementById('subtotal').innerText = `Subtotal: ${subtotal() - parseInt(value)} €`;
+            document.getElementById('total').value =  subtotal() - parseInt(value);
         }
-        document.getElementById('total').value = subtotal();
     }
     function runAmountMinusItem(x) {
         document.getElementById(`item_count${test[x][0]}`).setAttribute('value', parseInt(document.getElementById(`item_count${test[x][0]}`).getAttribute('value'))-1);
@@ -144,11 +145,12 @@
         var value = localStorage.getItem('discount').split('.')[1];
         if (type == '0') {
             document.getElementById('subtotal').innerText = `Subtotal: ${subtotal() * ((100 - parseInt(value))/100)} €`;
+            document.getElementById('total').value = subtotal() * ((100 - parseInt(value))/100);
         }
         else {
             document.getElementById('subtotal').innerText = `Subtotal: ${subtotal() - parseInt(value)} €`;
+            document.getElementById('total').value =  subtotal() - parseInt(value);
         }
-        document.getElementById('total').value = subtotal();
     }
     function subtotal() {
         var subtotal = 0;
@@ -172,11 +174,12 @@
                 var value = xhr.response.split('.')[1];
                 if (type == '0') {
                     document.getElementById('subtotal').innerText = `Subtotal: ${subtotal() * ((100 - parseInt(value))/100)} €`;
+                    document.getElementById('total').value = subtotal() * ((100 - parseInt(value))/100);
                 }
                 else {
                     document.getElementById('subtotal').innerText = `Subtotal: ${subtotal() - parseInt(value)} €`;
+                    document.getElementById('total').value =  subtotal() - parseInt(value);
                 }
-                document.getElementById('total').value = subtotal();
             }
         }
     }
