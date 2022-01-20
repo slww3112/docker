@@ -23,7 +23,7 @@
     xhr.open('post','/php/cart.php');
     var data  = {}
     for (let i  = 0; i<localStorage.length;i++) {
-        if (localStorage.key(i) != 'discount') {
+        if (localStorage.key(i) != 'discount' && localStorage.key(i) != '__paypal_storage__') {
             data[localStorage.key(i)] = localStorage.getItem(localStorage.key(i));
         }
     }
@@ -31,6 +31,7 @@
     xhr.send(data);
     xhr.onload = function() {
         localStorage.setItem('discount','1.0');
+        console.log(xhr.response);
         test  = JSON.parse(xhr.response);
         for (let i = 0;i<test.length;i++) {
             var str = test[i][0];
@@ -102,12 +103,14 @@
         else {
             document.getElementById('subtotal').innerText = `Subtotal: ${subtotal() - parseInt(value)} €`;
         }
+        document.getElementById('total').value =  subtotal();
     }
     function run(x) {
         document.getElementById(`col${test[x][0]}`).remove();
         localStorage.removeItem(test[x][0]);
         test[x][1] = 0;
         document.getElementById('subtotal').innerText = `Subtotal: ${subtotal()} €`;
+        document.getElementById('total').value = subtotal();
     }
     function runAmountPlusItem(x) {
         document.getElementById(`item_count${test[x][0]}`).setAttribute('value', parseInt(document.getElementById(`item_count${test[x][0]}`).getAttribute('value'))+1);
@@ -126,6 +129,7 @@
         else {
             document.getElementById('subtotal').innerText = `Subtotal: ${subtotal() - parseInt(value)} €`;
         }
+        document.getElementById('total').value = subtotal();
     }
     function runAmountMinusItem(x) {
         document.getElementById(`item_count${test[x][0]}`).setAttribute('value', parseInt(document.getElementById(`item_count${test[x][0]}`).getAttribute('value'))-1);
@@ -144,6 +148,7 @@
         else {
             document.getElementById('subtotal').innerText = `Subtotal: ${subtotal() - parseInt(value)} €`;
         }
+        document.getElementById('total').value = subtotal();
     }
     function subtotal() {
         var subtotal = 0;
@@ -171,6 +176,7 @@
                 else {
                     document.getElementById('subtotal').innerText = `Subtotal: ${subtotal() - parseInt(value)} €`;
                 }
+                document.getElementById('total').value = subtotal();
             }
         }
     }
@@ -223,7 +229,11 @@
                             document.getElementById('btn_save').addEventListener('click',coupon);
                         </script>
                         </div>
-                        <div class="btn btn-primary" role="button" href="/checkout.php">Cart</div>
+                        <div><form action="checkout.php" method="post">
+                                <input name="total" id="total" type="hidden" value="0">
+                                <input id='paypal' class="btn btn-primary" name="submit" type='submit' value='Weiter'>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
