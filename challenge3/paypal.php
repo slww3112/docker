@@ -42,6 +42,13 @@ if (isset($_POST)) {
     }
     ?>
 </form>
+<script>
+    for (let i  = 0; i<localStorage.length;i++) {
+        if (localStorage.key(i) != 'discount' && localStorage.key(i) != '__paypal_storage__') {
+            document.getElementById('myForm').innerHTML += `<input type="hidden" name="`+localStorage.key(i)+`" value="`+localStorage.getItem(localStorage.key(i))+`">`;
+        }
+    }
+</script>
 <nav class="navbar navbar-light navbar-expand-md textdark text-dark">
     <div class="container-fluid"><a class="navbar-brand bg-dark" style="color: rgba(255,255,255,0.9);" href="/index.html">Shop</a><button data-bs-toggle="collapse" class="navbar-toggler bg-dark" data-bs-target="#navcol-1" style="color: rgba(255,254,254,0.55);"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse bg-dark" id="navcol-1">
@@ -70,8 +77,6 @@ if (isset($_POST)) {
     <div id="paypal-button-container"></div>
 
     <script>
-        var subtotalval = localStorage.getItem("subtotalJS");
-        console.log(subtotalval);
       paypal.Buttons({
 
         // Sets up the transaction when a payment button is clicked
@@ -79,7 +84,7 @@ if (isset($_POST)) {
           return actions.order.create({
             purchase_units: [{
               amount: {
-                value: <?php echo $total; ?>//'localStorage.getItem("subtotalJS");' // Can reference variables or functions. Example: `value: document.getElementById('...').value`
+                value: <?php echo $total; ?>
               }
             }]
           });

@@ -1,13 +1,16 @@
 <?php
 include("db_kauf.php");
 if (isset($_POST)){
-    echo var_dump($_POST);
+    $return = [];
+    $i = 0;
+    foreach ($_POST as $key => $value) {
+        //do something
+        $return[$key] = $value;
+        $i = $i +1;
+    }
+    var_dump($return);
 }
 ?>
-
-
-?>
-
 <!DOCTYPE html>
 <html class="text-dark" lang="en">
 
@@ -29,7 +32,6 @@ if (isset($_POST)){
     <link rel="stylesheet" href="assets/css/Testimonials.css">
     <link rel="stylesheet" href="assets/css/untitled.css">
 </head>
-
 <body class="text-dark" style="background: var(--bs-dark);">
 <nav class="navbar navbar-light navbar-expand-md textdark text-dark">
     <div class="container-fluid"><a class="navbar-brand bg-dark" style="color: rgba(255,255,255,0.9);"

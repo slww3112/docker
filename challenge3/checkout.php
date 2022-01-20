@@ -12,7 +12,6 @@ if (isset($_POST['btn_save'])) {
     echo $_POST['country'];
     header("Location:/paypal.php");
 }
-
 ?>
 
 
@@ -44,7 +43,6 @@ if (isset($_POST['btn_save'])) {
     <link rel="stylesheet" href="assets/css/Testimonials.css">
     <link rel="stylesheet" href="assets/css/untitled.css">
 </head>
-
 <body class="text-dark" style="background: var(--bs-dark);">
 <nav class="navbar navbar-light navbar-expand-md textdark text-dark">
     <div class="container-fluid"><a class="navbar-brand bg-dark" style="color: rgba(255,255,255,0.9);" href="/index.php">Shop</a><button data-bs-toggle="collapse" class="navbar-toggler bg-dark" data-bs-target="#navcol-1" style="color: rgba(255,254,254,0.55);"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -134,8 +132,6 @@ if (isset($_POST['btn_save'])) {
     </div>
 </div>
 </div>
-</div>
-</form>
 
 <div class="container" style="margin-top: 80px">
     <footer class="footer-dark">
@@ -173,12 +169,12 @@ if (isset($_POST['btn_save'])) {
     </footer>
 </div>
 </section>
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../assets/js/bs-init.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/bs-init.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
-<script src="../assets/js/Lightbox-Gallery.js"></script>
-<script src="../assets/js/Simple-Slider.js"></script>
+<script src="assets/js/Lightbox-Gallery.js"></script>
+<script src="assets/js/Simple-Slider.js"></script>
 </body>
 
 </html>
