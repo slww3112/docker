@@ -78,7 +78,7 @@ if(isset($_GET['action']) && $_GET['action']!="" && $_GET['action']=='delete')
                             </tr></thead>
                             <tbody>
                             <?php
-                            $result=mysqli_query($con,"select user_id, email, password from user_info")or die ("query 2 incorrect.......");
+                            $result=mysqli_query($con,"select user_id, email, password from users_info")or die ("query 2 incorrect.......");
 
                             while(list($user_id,$user_name,$user_password)=
                                 mysqli_fetch_array($result))

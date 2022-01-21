@@ -3,7 +3,7 @@ session_start();
 include("db.php");
 $user_id=$_REQUEST['user_id'];
 
-$result=mysqli_query($con,"select user_id,first_name,last_name, email, password from user_info where user_id='$user_id'")or die ("query 1 incorrect.......");
+$result=mysqli_query($con,"select user_id,first_name,last_name, email, password from users_info where user_id='$user_id'")or die ("query 1 incorrect.......");
 
 list($user_id,$first_name,$last_name,$email,$user_password)=mysqli_fetch_array($result);
 
@@ -15,7 +15,7 @@ if(isset($_POST['btn_save']))
     $email=$_POST['email'];
     $user_password=$_POST['password'];
 
-    mysqli_query($con,"update user_info set first_name='$first_name', last_name='$last_name', email='$email', password='$user_password' where user_id='$user_id'")or die("Query 2 is inncorrect..........");
+    mysqli_query($con,"update users_info set first_name='$first_name', last_name='$last_name', email='$email', password='$user_password' where user_id='$user_id'")or die("Query 2 is inncorrect..........");
 
     header("location: manageuser.php");
     mysqli_close($con);
